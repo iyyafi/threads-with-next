@@ -34,7 +34,6 @@ export default function NavBar() {
           </Link>
         ))}
       </div>
-      <div>Display Option</div>
     </div>
   );
 }
