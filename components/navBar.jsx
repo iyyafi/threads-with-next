@@ -15,7 +15,7 @@ export default function NavBar() {
     return sort === value;
   };
   return (
-    <div class="flex flex-row items-center justify-between rounded border-b border-[#ccc] px-3 py-2.5">
+    <div className="flex flex-row items-center justify-between rounded border-b border-[#ccc] px-3 py-2.5">
       <div className="flex gap-1">
         {sortmenu.map((menu) => (
           <Link

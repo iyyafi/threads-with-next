@@ -2,12 +2,18 @@ This is a Reddit Thread view using [Next.js](https://nextjs.org/).
 
 ## Getting Started
 
-First, cloen and run:
+First, clone and run:
 
 ```bash
 npm i
 # or
 npm install
+```
+
+Then, create [.env.local] file in root directory, and fill your reddit token with this key:
+
+```bash
+NEXT_PUBLIC_REDDIT_TOKEN = xxxxxxxxx
 ```
 
 Last, run the development server:
