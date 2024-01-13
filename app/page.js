@@ -4,7 +4,7 @@ import {
   QueryClient,
 } from "@tanstack/react-query";
 import ThreadList from "../components/threadList";
-import { getThreadList } from "../hooks/getThreadList";
+import { getThreadList } from "../fetching/getThreadList";
 
 export default async function Home() {
   const queryClient = new QueryClient();

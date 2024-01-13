@@ -3,8 +3,9 @@ import { useQuery } from "@tanstack/react-query";
 import { fromUnixTime, format } from "date-fns";
 import parse from "html-react-parser";
 
-import { getThreadDetail } from "../hooks/getThreadDetail";
+import { getThreadDetail } from "../fetching/getThreadDetail";
 import { modelReplies } from "../models/replies";
+import ThreadComment from "./threadComment";
 
 export default function ThreadDetail({ thread, id }) {
   const { isPending, error, data } = useQuery({
@@ -42,13 +43,13 @@ export default function ThreadDetail({ thread, id }) {
         <h1 className="text-lg font-semibold">{data.opTitle}</h1>
         <div className="text-sm">{parse(parse(data.opContent))}</div>
         <div className=""></div>
-        {/* <div>
-                {data.comment.map((comment) => (
-                    <div key={comment.id}>
-                        <ThreadComment {...comment} />
-                    </div>
-                ))}
-            </div> */}
+        <div>
+          {data.comment.map((comment) => (
+            <div key={comment.id}>
+              <ThreadComment {...comment} />
+            </div>
+          ))}
+        </div>
       </div>
     </>
   );

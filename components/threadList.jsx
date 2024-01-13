@@ -2,7 +2,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { fromUnixTime, format } from "date-fns";
 
-import { getThreadList } from "../hooks/getThreadList";
+import { getThreadList } from "../fetching/getThreadList";
 import ThreadCard from "./threadCard";
 
 export default function ThreadList() {

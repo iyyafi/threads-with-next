@@ -3,7 +3,7 @@ import {
   HydrationBoundary,
   QueryClient,
 } from "@tanstack/react-query";
-import { getThreadDetail } from "../../../hooks/getThreadDetail";
+import { getThreadDetail } from "../../../fetching/getThreadDetail";
 import ThreadDetail from "../../../components/threadDetail";
 
 export default async function Page({ params }) {
