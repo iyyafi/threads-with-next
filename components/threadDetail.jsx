@@ -45,7 +45,7 @@ export default function ThreadDetail({ thread, id }) {
         <div className=""></div>
         <div>
           {data.comment.map((comment) => (
-            <div key={comment.id}>
+            <div key={`${comment.link_id}${comment.id}`}>
               <ThreadComment {...comment} />
             </div>
           ))}
