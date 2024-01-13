@@ -47,3 +47,22 @@ export default function ThreadCard(props) {
     </Link>
   );
 }
+
+export function ThreadCardSkeleton() {
+  return (
+    <div className="border-b border-[#ccc] px-4 py-2">
+      <div className="flex flex-col gap-2">
+        <div className="animate-pulse flex gap-2">
+          <div className="h-3 bg-slate-300 rounded max-w-[50px] w-full"></div>
+          <div className="h-3 bg-slate-300 rounded max-w-[70px] w-full"></div>
+        </div>
+        <div className="animate-pulse h-4 bg-slate-300 rounded w-full"></div>
+        <div className="animate-pulse h-4 bg-slate-300 rounded max-w-[250px] w-full"></div>
+        <div className="flex flex-row gap-2">
+          <span className="animate-pulse h-[32px] rounded-full bg-slate-300 w-[75px]"></span>
+          <span className="animate-pulse h-[32px] rounded-full bg-slate-300 w-[60px]"></span>
+        </div>
+      </div>
+    </div>
+  );
+}
