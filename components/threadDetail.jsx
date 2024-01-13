@@ -1,11 +1,11 @@
 "use client";
 import { useQuery } from "@tanstack/react-query";
 import { fromUnixTime, format } from "date-fns";
-import parse from "html-react-parser";
 
 import { getThreadDetail } from "../fetching/getThreadDetail";
 import { modelReplies } from "../models/replies";
 import ThreadComment from "./threadComment";
+import { parseHtml } from "../utils/parseHtml";
 
 export default function ThreadDetail({ thread, id }) {
   const { isPending, error, data } = useQuery({
@@ -32,17 +32,16 @@ export default function ThreadDetail({ thread, id }) {
 
   return (
     <>
-      <div className="px-4">
-        <div className="flex flex-col">
-          <div className="flex flex-row">
+      <div className="px-4 py-6 flex flex-col gap-2">
+        <div className="flex flex-col gap-2">
+          <div className="flex flex-row gap-2">
             <span className="text-xs font-bold">{thread}</span>
             <span className="text-xs">{data.opTimePost}</span>
           </div>
           <span className="text-xs">{data.opPostBy}</span>
         </div>
         <h1 className="text-lg font-semibold">{data.opTitle}</h1>
-        <div className="text-sm">{parse(parse(data.opContent))}</div>
-        <div className=""></div>
+        <div className="text-sm">{parseHtml(data.opContent)}</div>
         <div>
           {data.comment.map((comment) => (
             <div key={`${comment.link_id}${comment.id}`}>

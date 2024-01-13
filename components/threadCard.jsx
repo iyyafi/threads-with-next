@@ -6,9 +6,9 @@ export default function ThreadCard(props) {
     props;
   return (
     <Link href={`/${thread}/${id}`}>
-      <div className="border-b border-[#ccc] px-4 py-1">
+      <div className="border-b border-[#ccc] px-4 py-2">
         <div className="flex flex-col gap-2">
-          <div>
+          <div className="flex gap-2">
             <span className="text-xs font-bold">{postedBy}</span>
             <span className="text-xs text-[#576F76]">{timePost}</span>
           </div>

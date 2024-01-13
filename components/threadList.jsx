@@ -20,17 +20,16 @@ export default function ThreadList() {
         voteCount: thread.data.score,
       })),
   });
-  console.log(data);
 
   if (isPending) return "Loading...";
 
   if (error) return "An error has occurred: " + error.message;
 
   return (
-    <>
+    <div className="py-6">
       {data.map((item) => (
         <ThreadCard key={item.id} {...item} />
       ))}
-    </>
+    </div>
   );
 }
