@@ -16,7 +16,7 @@ export default async function Page({ params }) {
   const tokenExpired = cookieStore.get("yy_token_expired")?.value;
   const todayDate = String(new Date().getDate());
 
-  if (!token || !tokenExpired || tokenExpired !== todayDate) {
+  if (tokenExpired !== todayDate) {
     redirect("/api/token");
   }
 
