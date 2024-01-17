@@ -12,8 +12,10 @@ import ThreadDetail from "../../../components/threadDetail";
 export default async function Page({ params }) {
   const cookieStore = cookies();
   const queryClient = new QueryClient();
-  const token = cookieStore.get("yy_token")?.value;
-  const tokenExpired = cookieStore.get("yy_token_expired")?.value;
+  //const token = cookieStore.get("yy_token")?.value;
+  //const tokenExpired = cookieStore.get("yy_token_expired")?.value;
+  const token = localStorage.getItem("yy_token");
+  const tokenExpired = localStorage.getItem("yy_token_expired");
   const todayDate = String(new Date().getDate());
 
   if (tokenExpired !== todayDate) {

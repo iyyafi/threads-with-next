@@ -1,6 +1,6 @@
 import axios from "axios";
 import { redirect } from "next/navigation";
-import { cookies } from "next/headers";
+// import { cookies } from "next/headers";
 
 export async function GET() {
   const res = axios
@@ -16,7 +16,7 @@ export async function GET() {
           Authorization: `Basic ${process.env.NEXT_PUBLIC_REDDIT_AUTH}`,
           "Content-Type": "application/x-www-form-urlencoded",
         },
-      }
+      },
     )
     .then((res) => {
       return res.data;
@@ -24,8 +24,10 @@ export async function GET() {
 
   const data = await res;
 
-  cookies().set("yy_token", data.access_token);
-  cookies().set("yy_token_expired", new Date().getDate());
+  //cookies().set("yy_token", data.access_token);
+  //cookies().set("yy_token_expired", new Date().getDate());
+  localStorage.setItem("yy_token", data.access_token);
+  localStorage.setItem("yy_token_expired", new Date().getDate());
 
   redirect("/");
 }
