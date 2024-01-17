@@ -18,7 +18,7 @@ export default function ThreadList({ token }) {
 
   const { isPending, error, data } = useQuery({
     queryKey: ["reddit", "DotA2", sort],
-    queryFn: getThreadList({ sort, token: token || tokens.access_token }),
+    queryFn: getThreadList({ sort, token: token || tokens?.access_token }),
     select: (res) =>
       res.data.children.map((thread) => ({
         id: thread.data.id,
