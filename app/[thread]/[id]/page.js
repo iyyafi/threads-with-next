@@ -3,9 +3,11 @@ import {
   HydrationBoundary,
   QueryClient,
 } from "@tanstack/react-query";
+import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
+
 import { getThreadDetail } from "../../../fetching/getThreadDetail";
 import ThreadDetail from "../../../components/threadDetail";
-import { cookies } from "next/headers";
 
 export default async function Page({ params }) {
   const cookieStore = cookies();
