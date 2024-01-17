@@ -6,12 +6,12 @@ import { fromUnixTime, format } from "date-fns";
 import { getThreadList } from "../fetching/getThreadList";
 import ThreadCard, { ThreadCardSkeleton } from "./threadCard";
 
-export default function ThreadList() {
+export default function ThreadList({ token }) {
   const searchParams = useSearchParams();
   const sort = searchParams.get("sort") || "hot";
   const { isPending, error, data } = useQuery({
     queryKey: ["reddit", "DotA2", sort],
-    queryFn: getThreadList({ sort }),
+    queryFn: getThreadList({ sort, token }),
     select: (res) =>
       res.data.children.map((thread) => ({
         id: thread.data.id,

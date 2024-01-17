@@ -1,11 +1,11 @@
 import axios from "axios";
 
-export function getThreadList({ sort }) {
+export function getThreadList({ sort, token }) {
   return () =>
     axios
       .get(`https://oauth.reddit.com/r/DotA2/${sort}`, {
         headers: {
-          Authorization: `bearer ${process.env.NEXT_PUBLIC_REDDIT_TOKEN}`,
+          Authorization: `bearer ${token}`,
         },
       })
       .then((res) => res.data);

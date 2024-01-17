@@ -7,10 +7,10 @@ import { modelReplies } from "../models/replies";
 import ThreadComment from "./threadComment";
 import { parseHtml } from "../utils/parseHtml";
 
-export default function ThreadDetail({ thread, id }) {
+export default function ThreadDetail({ thread, id, token }) {
   const { isPending, error, data } = useQuery({
     queryKey: ["reddit", thread, id],
-    queryFn: getThreadDetail({ thread: thread, id: id }),
+    queryFn: getThreadDetail({ thread: thread, id: id, token }),
     select: (res) => {
       return {
         opTitle: res[0].data.children[0].data.title,
