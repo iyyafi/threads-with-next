@@ -13,8 +13,8 @@ import NavBar from "../components/navBar";
 export default async function Home({ searchParams }) {
   const cookieStore = cookies();
   const queryClient = new QueryClient();
-  const token = cookieStore.get("token")?.value;
-  const tokenExpired = cookieStore.get("token_expired")?.value;
+  const token = cookieStore.get("yy_token")?.value;
+  const tokenExpired = cookieStore.get("yy_token_expired")?.value;
   const todayDate = String(new Date().getDate());
 
   if (!token || !tokenExpired || tokenExpired !== todayDate) {

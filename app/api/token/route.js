@@ -24,8 +24,8 @@ export async function GET() {
 
   const data = await res;
 
-  cookies().set("token", data.access_token);
-  cookies().set("token_expired", new Date().getDate());
+  cookies().set("yy_token", data.access_token);
+  cookies().set("yy_token_expired", new Date().getDate());
 
   redirect("/");
 }
