@@ -7,7 +7,7 @@ import { getThreadList } from "../fetching/getThreadList";
 import { getToken } from "../fetching/getToken";
 import ThreadCard, { ThreadCardSkeleton } from "./threadCard";
 
-export default function ThreadList({ token }) {
+export default function ThreadList() {
   const searchParams = useSearchParams();
   const sort = searchParams.get("sort") || "hot";
   const todayDate = String(new Date().getDate());
@@ -18,7 +18,7 @@ export default function ThreadList({ token }) {
 
   const { isPending, error, data } = useQuery({
     queryKey: ["reddit", "DotA2", sort],
-    queryFn: getThreadList({ sort, token: token || tokens?.access_token }),
+    queryFn: getThreadList({ sort, token: tokens?.access_token }),
     select: (res) =>
       res.data.children.map((thread) => ({
         id: thread.data.id,
@@ -29,7 +29,7 @@ export default function ThreadList({ token }) {
         commentCount: thread.data.num_comments,
         voteCount: thread.data.score,
       })),
-    enabled: !!tokens.access_token,
+    enabled: !!tokens?.access_token,
   });
 
   if (isPending)

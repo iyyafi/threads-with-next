@@ -14,23 +14,24 @@ export default async function Home({ searchParams }) {
 
   const todayDate = String(new Date().getDate());
 
-  const token = await queryClient.prefetchQuery({
+  await queryClient.prefetchQuery({
     queryKey: ["reddit", "auth", todayDate],
     queryFn: getToken(),
-  });
-
-  await queryClient.prefetchQuery({
-    queryKey: ["reddit", "DotA2"],
-    queryFn: getThreadList({
-      sort: searchParams.sort,
-      token: token?.access_token,
-    }),
+    onSuccess: async (data) => {
+      await queryClient.prefetchQuery({
+        queryKey: ["reddit", "DotA2"],
+        queryFn: getThreadList({
+          sort: searchParams.sort,
+          token: data?.access_token,
+        }),
+      });
+    },
   });
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
       <NavBar />
-      <ThreadList token={token?.access_token} />
+      <ThreadList />
     </HydrationBoundary>
   );
 }

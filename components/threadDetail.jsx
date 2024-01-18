@@ -9,7 +9,7 @@ import ThreadComment from "./threadComment";
 import { parseHtml } from "../utils/parseHtml";
 import ThreadDetailLoading from "./threadDetailLoading";
 
-export default function ThreadDetail({ thread, id, token }) {
+export default function ThreadDetail({ thread, id }) {
   const todayDate = String(new Date().getDate());
   const { data: tokens } = useQuery({
     queryKey: ["reddit", "auth", todayDate],
@@ -20,7 +20,7 @@ export default function ThreadDetail({ thread, id, token }) {
     queryFn: getThreadDetail({
       thread: thread,
       id: id,
-      token: token || tokens?.access_token,
+      token: tokens?.access_token,
     }),
     select: (res) => {
       return {
