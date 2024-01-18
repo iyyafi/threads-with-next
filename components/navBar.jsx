@@ -15,8 +15,11 @@ export default function NavBar() {
     return sort === value;
   };
   return (
-    <div className="flex flex-row items-center justify-between rounded border-b border-[#ccc] px-3 py-2.5">
-      <div className="flex gap-1">
+    <div
+      id="navbarWrapper"
+      className="flex flex-row items-center justify-between rounded border-b border-[#ccc] px-3 py-2.5"
+    >
+      <div id="navbarBox" className="flex gap-1">
         {sortmenu.map((menu) => (
           <Link
             key={menu.value}
