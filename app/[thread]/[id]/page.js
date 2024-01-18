@@ -3,35 +3,34 @@ import {
   HydrationBoundary,
   QueryClient,
 } from "@tanstack/react-query";
-import { cookies } from "next/headers";
-import { redirect } from "next/navigation";
 
 import { getThreadDetail } from "../../../fetching/getThreadDetail";
+import { getToken } from "../../../fetching/getToken";
 import ThreadDetail from "../../../components/threadDetail";
 
 export default async function Page({ params }) {
-  const cookieStore = cookies();
   const queryClient = new QueryClient();
-  const token = cookieStore.get("yy_token")?.value;
-  const tokenExpired = cookieStore.get("yy_token_expired")?.value;
+
   const todayDate = String(new Date().getDate());
 
-  if (tokenExpired !== todayDate) {
-    redirect("/api/token");
-  }
-
   await queryClient.prefetchQuery({
-    queryKey: ["reddit", params.thread, params.id],
-    queryFn: getThreadDetail({
-      thread: params.thread,
-      id: params.id,
-      token: token,
-    }),
+    queryKey: ["reddit", "auth", todayDate],
+    queryFn: getToken(),
+    onSuccess: async (res) => {
+      await queryClient.prefetchQuery({
+        queryKey: ["reddit", params.thread, params.id],
+        queryFn: getThreadDetail({
+          thread: params.thread,
+          id: params.id,
+          data: res?.data?.access_token,
+        }),
+      });
+    },
   });
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <ThreadDetail {...params} token={token} />
+      <ThreadDetail {...params} />
     </HydrationBoundary>
   );
 }

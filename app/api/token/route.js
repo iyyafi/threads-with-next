@@ -1,9 +1,9 @@
 import axios from "axios";
-import { redirect } from "next/navigation";
-import { cookies } from "next/headers";
+// import { redirect } from "next/navigation";
+// import { cookies } from "next/headers";
 
 export async function GET() {
-  const res = axios
+  const res = await axios
     .post(
       `https://www.reddit.com/api/v1/access_token`,
       {
@@ -24,8 +24,12 @@ export async function GET() {
 
   const data = await res;
 
-  cookies().set("yy_token", data.access_token);
-  cookies().set("yy_token_expired", new Date().getDate());
+  //cookies().set("yy_token", data.access_token);
+  //cookies().set("yy_token_expired", new Date().getDate());
+  /* localStorage.setItem("yy_token", data.access_token);
+  localStorage.setItem("yy_token_expired", new Date().getDate());
 
-  redirect("/");
+  redirect("/"); */
+
+  return Response.json({ data });
 }
