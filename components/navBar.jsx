@@ -19,7 +19,7 @@ export default function NavBar() {
       id="navbarWrapper"
       className="flex flex-row items-center justify-between rounded border-b border-[#ccc] px-3 py-2.5"
     >
-      <div id="navbarBox" className="flex gap-1">
+      <nav id="navbarBox" className="flex gap-1">
         {sortmenu.map((menu) => (
           <Link
             key={menu.value}
@@ -36,7 +36,7 @@ export default function NavBar() {
             {menu.label}
           </Link>
         ))}
-      </div>
+      </nav>
     </div>
   );
 }
