@@ -17,12 +17,12 @@ export default async function Home({ searchParams }) {
   await queryClient.prefetchQuery({
     queryKey: ["reddit", "auth", todayDate],
     queryFn: getToken(),
-    onSuccess: async (data) => {
+    onSuccess: async (res) => {
       await queryClient.prefetchQuery({
         queryKey: ["reddit", "DotA2"],
         queryFn: getThreadList({
           sort: searchParams.sort,
-          token: data?.access_token,
+          token: res?.data?.access_token,
         }),
       });
     },

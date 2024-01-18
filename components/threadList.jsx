@@ -18,7 +18,7 @@ export default function ThreadList() {
 
   const { isPending, error, data } = useQuery({
     queryKey: ["reddit", "DotA2", sort],
-    queryFn: getThreadList({ sort, token: tokens?.access_token }),
+    queryFn: getThreadList({ sort, token: tokens?.data?.access_token }),
     select: (res) =>
       res.data.children.map((thread) => ({
         id: thread.data.id,
@@ -29,7 +29,7 @@ export default function ThreadList() {
         commentCount: thread.data.num_comments,
         voteCount: thread.data.score,
       })),
-    enabled: !!tokens?.access_token,
+    enabled: !!tokens?.data?.access_token,
   });
 
   if (isPending)

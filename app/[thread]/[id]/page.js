@@ -16,13 +16,13 @@ export default async function Page({ params }) {
   await queryClient.prefetchQuery({
     queryKey: ["reddit", "auth", todayDate],
     queryFn: getToken(),
-    onSuccess: async (data) => {
+    onSuccess: async (res) => {
       await queryClient.prefetchQuery({
         queryKey: ["reddit", params.thread, params.id],
         queryFn: getThreadDetail({
           thread: params.thread,
           id: params.id,
-          data: data?.access_token,
+          data: res?.data?.access_token,
         }),
       });
     },

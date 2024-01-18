@@ -20,7 +20,7 @@ export default function ThreadDetail({ thread, id }) {
     queryFn: getThreadDetail({
       thread: thread,
       id: id,
-      token: tokens?.access_token,
+      token: tokens?.data?.access_token,
     }),
     select: (res) => {
       return {
@@ -35,7 +35,7 @@ export default function ThreadDetail({ thread, id }) {
         comment: modelReplies(res[1]),
       };
     },
-    enabled: !!tokens?.access_token,
+    enabled: !!tokens?.data?.access_token,
   });
 
   if (isPending) return <ThreadDetailLoading />;
